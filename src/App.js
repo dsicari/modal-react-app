@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import ReactLoading from 'react-loading';
 
+import MessageModal from './components/ModalMessage';
+
 // To avoid warning of accessibility, make sure to bind modal to your appElement
 // http://reactcommunity.org/react-modal/accessibility/
 Modal.setAppElement('#root');
@@ -13,6 +15,7 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [styledModalIsOpen, setStyledModalIsOpen] = useState(false);
   const [loadingModalIsOpen, setLoadingModalIsOpen] = useState(false);
+  const [showModalMessage, setShowModalMessage] = useState({state: false, type: ''});
 
   /* 
     MODAL PROPS
@@ -29,7 +32,16 @@ function App() {
       <button onClick={() => setStyledModalIsOpen(true)}>Open Styled Modal</button>
       <br /><br />
       <button onClick={() => setLoadingModalIsOpen(true)}>Open Loading Modal</button>
+      <br /><br />
+      <button onClick={() => {setShowModalMessage({state: true, type: 'error'})}}>Open Component Modal Error</button>
+      <br /><br />
+      <button onClick={() => {setShowModalMessage({state: true, type: 'noConnection'})}}>Open Component Modal NoConnection</button>
       
+      <MessageModal 
+        type={showModalMessage.type} 
+        isOpen={showModalMessage.state} 
+        setIsOpen={setShowModalMessage} />
+
       <Modal 
         isOpen={modalIsOpen} 
         onRequestClose={() => setModalIsOpen(false)}
