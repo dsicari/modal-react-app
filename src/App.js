@@ -6,6 +6,8 @@ import Modal from 'react-modal';
 import ReactLoading from 'react-loading';
 
 import MessageModal from './components/ModalMessage';
+import ModalNotificationDetails from './components/ModalNotificationDetails';
+import ModalBottom from './components/ModalBottom';
 
 // To avoid warning of accessibility, make sure to bind modal to your appElement
 // http://reactcommunity.org/react-modal/accessibility/
@@ -16,6 +18,8 @@ function App() {
   const [styledModalIsOpen, setStyledModalIsOpen] = useState(false);
   const [loadingModalIsOpen, setLoadingModalIsOpen] = useState(false);
   const [showModalMessage, setShowModalMessage] = useState({state: false, type: ''});
+  const [showModalNotificationDetails, setShowModalNotificationDetails] = useState({state: false});
+  const [showModalBottom, setShowModalBottom] = useState({state: false});
 
   /* 
     MODAL PROPS
@@ -36,11 +40,25 @@ function App() {
       <button onClick={() => {setShowModalMessage({state: true, type: 'error'})}}>Open Component Modal Error</button>
       <br /><br />
       <button onClick={() => {setShowModalMessage({state: true, type: 'noConnection'})}}>Open Component Modal NoConnection</button>
+      <br /><br />
+      <button onClick={() => {setShowModalNotificationDetails({state: true})}}>Open Component Modal Notification details</button>
+      <br /><br />
+      <button onClick={() => {setShowModalBottom({state: true})}}>Open Component Modal Bottom</button>
       
-      <MessageModal 
-        type={showModalMessage.type} 
+      <ModalNotificationDetails 
+        data={[
+          { "User Id": "12345678-e23a-12d4-a234-123456789012", "Plataforma": "iOS", "ID único": "12345678-e23a-12d4-a234-123456789012" },
+          { "User Id": "12345678-e23a-12d4-a234-123456789012", "Plataforma": "iOS", "ID único": "12345678-e23a-12d4-a234-123456789012" },
+          { "User Id": "12345678-e23a-12d4-a234-123456789012", "Plataforma": "iOS", "ID único": "12345678-e23a-12d4-a234-123456789012" },
+          { "User Id": "12345678-e23a-12d4-a234-123456789012", "Plataforma": "iOS", "ID único": "12345678-e23a-12d4-a234-123456789012" },
+        ]}
+        isOpen={showModalNotificationDetails.state} 
+        setIsOpen={setShowModalNotificationDetails} />
+
+      <MessageModal
         isOpen={showModalMessage.state} 
-        setIsOpen={setShowModalMessage} />
+        setIsOpen={setShowModalMessage}
+        type={showModalMessage.type} />
 
       <Modal 
         isOpen={modalIsOpen} 
@@ -101,6 +119,10 @@ function App() {
           width={'50px'} />
           
       </Modal>
+
+      <ModalBottom
+        isOpen={showModalBottom.state} 
+        setIsOpen={setShowModalBottom} />
 
     </div>
   );

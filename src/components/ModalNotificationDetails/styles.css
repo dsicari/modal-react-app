@@ -1,0 +1,27 @@
+.json-to-table td,
+.json-to-table th {
+  padding: 5px;
+  border: 1px solid #bebebe; 
+  background-color: #FFFFFF;
+}
+
+
+.json-to-table > tbody:first-child {
+  color: #204986;
+}
+
+.json-to-table td {
+  text-align: left; 
+  color: #353A40;
+}
+
+.json-to-table caption {
+  caption-side: bottom; 
+}
+
+.json-to-table table {  
+  width: 100%;
+  border-collapse: collapse;
+  font-family: sans-serif;
+  font-size: 0.8rem; 
+}
